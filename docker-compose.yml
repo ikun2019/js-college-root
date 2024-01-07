@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  blog-front:
+    build:
+      context: ./blog-front
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./blog-front:/app
+    environment:
+      NOTION_TOKEN: ${NOTION_TOKEN}
+      NOTION_DATABASE_ID: ${NOTION_DATABASE_ID}
+    env_file:
+      - .env
+    networks:
+      - blog-network
+
+networks:
+  blog-network:
+    driver: bridge
+    external: true
