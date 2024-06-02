@@ -11,3 +11,14 @@ services:
       - ./api/.env
     ports:
       - 8080:8080
+  client:
+    platform: linux/amd64
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - ./client:/app
+    # env_file:
+    #   - ./client/.env
+    ports:
+      - 3000:3000
