@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./client:/app
-    # env_file:
-    #   - ./client/.env
+    env_file:
+      - ./client/.env
     ports:
       - 3000:3000
