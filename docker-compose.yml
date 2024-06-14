@@ -11,14 +11,32 @@ services:
       - ./api/.env
     ports:
       - 8080:8080
-  client:
+
+  # client:
+  #   platform: linux/amd64
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./client:/app
+  #   environment:
+  #     - NODE_ENV=production
+  #   env_file:
+  #     - ./client/.env
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - api
+  front:
     platform: linux/amd64
     build:
-      context: ./client
+      context: ./front
       dockerfile: Dockerfile
     volumes:
-      - ./client:/app
+      - ./front:/app
     env_file:
-      - ./client/.env
+      - ./front/.env
     ports:
       - 3000:3000
+    depends_on:
+      - api
