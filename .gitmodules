@@ -4,3 +4,6 @@
 [submodule "client"]
   path = client
   url = https://github.com/ikun2019/js-college-client
+[submodule "front"]
+  path = front
+  url = https://github.com/ikun2019/js-college-front
