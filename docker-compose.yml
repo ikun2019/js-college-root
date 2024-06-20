@@ -12,21 +12,6 @@ services:
     ports:
       - 8080:8080
 
-  # client:
-  #   platform: linux/amd64
-  #   build:
-  #     context: ./client
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./client:/app
-  #   environment:
-  #     - NODE_ENV=production
-  #   env_file:
-  #     - ./client/.env
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - api
   front:
     platform: linux/amd64
     build:
@@ -40,3 +25,15 @@ services:
       - 3000:3000
     depends_on:
       - api
+
+  web:
+    platform: linux/amd64
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
+      - front
